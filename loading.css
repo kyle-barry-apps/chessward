@@ -1,0 +1,65 @@
+.loader {
+  position: fixed;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(white, #fee7da);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader.off {
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+
+.loader.on {
+  animation: fadeIn 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.circle {
+  display: inline-block;
+  background-color: rgba(255, 96, 0, .8);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: grow 1.5s linear infinite;
+  margin: -10px;
+}
+
+.circle:nth-child(2) {
+  background-color: rgba(255, 219, 198, .8);
+  animation-delay: 0.75s;
+}
+
+@keyframes grow {
+  50% {
+    transform: scale(1);
+  }
+}
+
+.loader-message {
+  margin-top: 15px;
+}
