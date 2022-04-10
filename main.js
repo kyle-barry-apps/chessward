@@ -56,8 +56,11 @@ function submit_action() {
 
   // Get user input and clear input value
   const player_input = document.getElementById('player-input');
-  const player = player_input.value;
+  let player = player_input.value;
   player_input.value = ''
+
+  // Lowercase player name and strip empty characters
+  player = player.toLowerCase().trim();
 
   // Clear not found error and current graph container if exists
   if (document.contains(document.getElementById('not-found'))) {
@@ -69,7 +72,7 @@ function submit_action() {
   }
 
   // Fetch data and pass to utility function
-  const stream = fetch(`https://lichess.org/api/games/user/${player}?perfType=&max=1000`,{headers:{Accept:'application/x-ndjson'}});
+  const stream = fetch(`https://lichess.org/api/games/user/${player}?perfType=&max=2500`,{headers:{Accept:'application/x-ndjson'}});
 
   // Add each game to games list
   const onMessage = obj => games.push(obj);
@@ -97,23 +100,23 @@ function handle_data (games, player) {
     let white_player;
     
     // Get black and white player user names and store winner color
-
     if (game.players.black.hasOwnProperty('aiLevel')) {
       black_player = 'Stockfish';
     } else {
       black_player = game.players.black.user.name;
+      black_player = black_player.toLowerCase();
     }
 
     if (game.players.white.hasOwnProperty('aiLevel')) {
       white_player = 'Stockfish';
     } else {
       white_player = game.players.white.user.name;
+      white_player = white_player.toLowerCase();
     }
 
     const winner = game.winner;
 
     // Get player color to match with winner color
-
     if (player === white_player) {
       game.player_color = "white";
     } else {
@@ -121,7 +124,6 @@ function handle_data (games, player) {
     }
 
     // Get result of game for player in question
-
     if (game.player_color === winner) {
       game.result = "win";
     } else {
@@ -299,10 +301,6 @@ function render_graphs(for_graphs_list) {
   // Loop through the list of tc data and create graph for each
   for_graphs_list.forEach(tc => {
 
-    // let graph_canvas = document.createElement('canvas');
-    // graph_canvas.id = 'graph' + '-' + tc.name;
-    // element.appendChild(graph_canvas);
-
     // Produce chart and pass in data from get_wld function
     let the_chart = document.getElementById('graph' + '-' + tc.name).getContext('2d');
   
@@ -346,12 +344,11 @@ function render_graphs(for_graphs_list) {
       }
     })
   })
-
 }
 
 function render_loading() {
 
-  //Make content container disappear for the time being
+  // Make content container disappear for the time being
   const content_container = document.querySelector('.content-container');
   content_container.style.opacity = 0;
 
@@ -363,7 +360,7 @@ function render_loading() {
 
 function kill_loading() {
 
-  //Make content container disappear for the time being
+  // Bring back content container
   const content_container = document.querySelector('.content-container');
   content_container.style.opacity = 1;
 
