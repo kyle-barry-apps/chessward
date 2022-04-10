@@ -69,7 +69,7 @@ function submit_action() {
   }
 
   // Fetch data and pass to utility function
-  const stream = fetch(`https://lichess.org/api/games/user/${player}?perfType=&max=`,{headers:{Accept:'application/x-ndjson'}});
+  const stream = fetch(`https://lichess.org/api/games/user/${player}?perfType=&max=1000`,{headers:{Accept:'application/x-ndjson'}});
 
   // Add each game to games list
   const onMessage = obj => games.push(obj);
@@ -280,10 +280,16 @@ function render_graphs(for_graphs_list) {
 
   for_graphs_list.forEach(tc => {
 
-    let graph_canvas = document.createElement('canvas');
+    const graph_mini_container = document.createElement('div');
+    graph_mini_container.classList.add('mini-container');
+
+    const graph_canvas = document.createElement('canvas');
     graph_canvas.classList.add('canvas');
     graph_canvas.id = 'graph' + '-' + tc.name;
-    element.appendChild(graph_canvas);
+
+    graph_mini_container.appendChild(graph_canvas);
+
+    element.appendChild(graph_mini_container);
 
   })
 
@@ -328,7 +334,7 @@ function render_graphs(for_graphs_list) {
             display: true,
             text: `${tc.name} Results`,
             font: {
-              size: 30
+              size: 20
             }
           },
           legend: {
