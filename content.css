@@ -75,7 +75,7 @@
 
   padding: 20px;
 
-  margin-top: 20px;
+  margin-top: 5px;
   margin-bottom: 100px;
 
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.05);
@@ -99,4 +99,7 @@
 .mini-container {
   height: 400px;
   width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
