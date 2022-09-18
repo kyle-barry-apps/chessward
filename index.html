@@ -1,57 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-J118KZW7Q4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+      gtag("config", "G-J118KZW7Q4");
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="header.css">
-  <link rel="stylesheet" href="content.css">
-  <link rel="stylesheet" href="buttons.css">
-  <link rel="stylesheet" href="loading.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <script src="main.js"></script>
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="content.css" />
+    <link rel="stylesheet" href="buttons.css" />
+    <link rel="stylesheet" href="loading.css" />
 
-  <title>ChessWard</title>
-  <link rel="icon" type="image/x-icon" href="/images/logo.svg">
+    <script src="main.js" defer></script>
 
-</head>
-<body>
-  <div class="loader">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="loader-message">this may take a minute...</div>
-  </div>
-
-  <div class="header">
-    <div class="logo">
-      <div class="logo-circle"></div>
+    <title>ChessWard - Lichess Stats</title>
+    <meta
+      name="description "
+      content="Chessward uses lichess user data to produce graphs for win-loss-draw percentages. It is for chess players who play on lichess and enjoy the insights, but want more specific statistics about their games."
+    />
+    <link rel="icon" type="image/x-icon" href="/images/logo.svg" />
+  </head>
+  <body>
+    <div class="loader">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="loader-message">this may take a minute...</div>
     </div>
-    <div class="donate">
-      <a href="https://www.paypal.com/donate/?business=CQWRPALTNSV3E&no_recurring=0&currency_code=USD" target="_blank"><button class="btn donate-btn">Donate</button></a>
-    </div>
-  </div>
 
-  <div class="content-container">
+    <main class="content-container">
+      <section class="description">
+        <h1>ChessWard</h1>
+        <p>
+          Enter any lichess username below and we'll access the games and
+          provide
+          <span>win-loss-draw</span>
+          graphs for each time control. It's currently limited to the last
+          <span style="font-weight: 500">2,500</span>
+          games, which will take around two minutes to load. Try
+          <span style="font-weight: 500">classy_kylieee</span> as an example.
+          Enjoy!
+        </p>
+      </section>
+      <div class="input-container">
+        <input id="player-input" type="text" placeholder="@lichess" />
+      </div>
+      <button class="btn submit-btn" onclick="submit_action()">GET DATA</button>
+    </main>
 
-    <div class="description">
-      <h2>ChessWard</h2>
-      <p>
-        Enter any lichess username below and we'll access the games and provide <span style="font-weight: 500; color: rgb(255,96,0);">win-loss-draw</span> graphs for each time control. It's currently limited to the last <span style="font-weight: 500; color: rgb(255,96,0);">2,500</span> games, which will take around two minutes to load. Try <span style="font-weight: 500;">classy_kylieee</span> as an example. Enjoy!
-      </p>
-    </div>
-    <div class="input-container">
-      <input id="player-input" type="text" placeholder="@lichess">
-    </div>
-    <div class="btn-container">
-      <button class="btn submit-btn" onclick="submit_action()">Get games</button>
-    </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+  </body>
 </html>
